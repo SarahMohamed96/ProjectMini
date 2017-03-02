@@ -8,9 +8,26 @@
     "ejs": "~1.0.0",
     "express": "^4.0.0",
     "jade": "~1.11.0",
+    "mongodb": "^2.2.24",
     "mongoose": "^4.8.5",
     "morgan": "~1.7.0",
     "mysql": "*",
     "serve-favicon": "~2.3.2"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarahMohamed96/miniProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SarahMohamed96/miniProject/issues"
+  },
+  "homepage": "https://github.com/SarahMohamed96/miniProject#readme",
+  "description": ""
 }
