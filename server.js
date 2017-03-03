@@ -13,7 +13,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/mini');
+mongoose.connect('mongodb://localhost/minidb');
 var db = mongoose.connection;
 
 

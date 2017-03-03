@@ -4,7 +4,18 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+var Portfolio = require('../models/portfolio');
      
+
+router.get('/newportfolio', function(req,res){
+res.render('newportfolio.html', {title: "New Portfolio"})
+});
+
+
+router.get('/newportfolio2', function(req,res){
+res.render('newportfolio2.html', {title: "New Portfolio"})
+});
+
      router.get('/',function(req,res){
         res.render('index.html', {title:"Home"})
      });
@@ -20,6 +31,11 @@ var User = require('../models/user');
         res.render('loginagain.html', {title:"Login"});
     });
 
+router.post('/login',
+  passport.authenticate('local', {successRedirect:'portfolioslogin', failureRedirect:'loginagain',failureFlash: true}),
+  function(req, res) {
+    res.redirect('/');
+  });
 	
 	router.post('/loginagain',
   passport.authenticate('local', {successRedirect:'portfolioslogin', failureRedirect:'loginagain',failureFlash: true}),
@@ -53,10 +69,97 @@ var User = require('../models/user');
     });
 
 router.post('/loginafter',
-  passport.authenticate('local', {successRedirect:'loginafter', failureRedirect:'loginagain',failureFlash: true}),
-  function(req, res) {
+  passport.authenticate('local', {successRedirect:'portfolioslogin', failureRedirect:'loginagain',failureFlash: true}), function(req, res) {
     res.redirect('/');
   });
+
+
+router.post('/newportfolio', function(req,res){
+var fname = req.body.fname;
+var lname = req.body.lname;
+var picture = req.body.picture;
+var description1 = req.body.description1;
+var description2 = req.body.description2;
+var description3 = req.body.description3;
+var description4 = req.body.description4;
+var description5 = req.body.description5;
+
+console.log(500);
+
+req.checkBody('fname', 'First Name is required').notEmpty();
+req.checkBody('lname', 'Last Name is required').notEmpty();
+req.checkBody('description1', 'Description 1 is required').notEmpty();
+
+var errors = req.validationErrors();
+
+	if(errors){
+		res.redirect('newportfolio2');
+	} else {
+		var newportfolio = new Portfolio({
+			fname: fname,
+			lname: lname,
+			picture: picture,
+			description1 : description1,
+			description2 : description2,
+			description3 : description3,
+			description4 : description4,
+			description5 : description5
+		});
+
+		Portfolio.createPortfolio(newportfolio, function(err, portfolio){
+			if(err) throw err;
+			console.log(portfolio);
+		});
+
+		req.flash('success_msg', 'You have created a portfolio');
+
+		res.redirect('newportfolio3');
+   }
+
+});
+
+
+router.post('/newportfolio2', function(req,res){
+var fname = req.body.fname;
+var lname = req.body.lname;
+var picture = req.body.picture;
+var description1 = req.body.description1;
+var description2 = req.body.decription2;
+var description3 = req.body.decription3;
+var description4 = req.body.decription4;
+var description5 = req.body.decription5;
+req.checkBody('fname', 'First Name is required').notEmpty();
+req.checkBody('lname', 'Last Name is required').notEmpty();
+req.checkBody('description1', 'Description 1 is required').notEmpty();
+var errors = req.validationErrors();
+	if(errors){
+		res.render('newportfolio2');
+	} else {
+		var newportfolio = new Portfolio({
+			fname: fname,
+			lname: lname,
+			picture: picture,
+			description1 : description1,
+			description2 : description2,
+			description3 : description3,
+			description4 : description4,
+			description5 : description5
+		});
+
+		Portfolio.createPortfolio(newportfolio, function(err, portfolio){
+			if(err) throw err;
+			console.log(portfolio);
+		});
+
+		req.flash('success_msg', 'You have created a portfolio');
+
+		res.redirect('newportfolio3');
+   }
+
+});
+
+
+
 
 
 router.post('/registeragain',function(req,res){
@@ -146,10 +249,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('/login',
-  passport.authenticate('local', {successRedirect:'portfolioslogin', failureRedirect:'loginagain',failureFlash: true}),
-  function(req, res) {
-    res.redirect('/');
-  });
+
 
 module.exports = router;

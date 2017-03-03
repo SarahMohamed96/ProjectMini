@@ -4,6 +4,8 @@
 </head>
 <Body background = "">
 <form action="success">
+<h1> Please keep in mind that the first and last name; as well as at least file 1 with its description are required.</h1>
+<h2> And please enter the files in the correct order starting with file 1. </h2>
 First Name :  <input type = "text" name = 'fname'>
 </br></br>
 Last Name :  <input type = "text" name = 'lname'>
@@ -12,42 +14,38 @@ Last Name :  <input type = "text" name = 'lname'>
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
     Upload a link to a picture you would like to use as your profile picture: <input type="text" name = "picture" />
 </form>
-Description of File 1 (Image or Code):<input type="text" name='description2'>
-</br>Description of File 2 :<input type="text" name='description3'>
- </br>Description of File 3 :<input type="text" name='description4'>
-</br>
-Description of File 4 :<input type="text" name='description5'>
-</br>
-
-Description of File 5 :<input type="text" name='description5'>
-</br>
-
   </br>
 <form enctype="multipart/form-data" action="__URL__" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-   Upload File 1 (note that your portfolio will not be added if there is not at least one : <input name="file1" type="file" />
+   Upload a file (note that your portfolio will not be added if there is not at least one : <input name="file1" type="file" />
 </br>
-
+Description of File 1 (Image or Code):<input type="text" name='description2'>
 </br> </br>
 <form enctype="multipart/form-data" action="__URL__" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
    Upload File 2: <input name="file2" type="file" />
+</br>Description of File 2 :<input type="text" name='description3'>
 
 </br> </br>
 <form enctype="multipart/form-data" action="__URL__" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
    Upload File 3: <input name="file3" type="file" />
+ </br>Description of File 3 :<input type="text" name='description4'>
 
 </br> </br>
 <form enctype="multipart/form-data" action="__URL__" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
    Upload File 4: <input name="file4" type="file" />
+</br>
+Description of File 4 :<input type="text" name='description5'>
 
 
 </br> </br>
 <form enctype="multipart/form-data" action="__URL__" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
    Upload File: <input name="file5" type="file" />
+</br>
+Description of File 5 :<input type="text" name='description5'>
 
 
 </form>
